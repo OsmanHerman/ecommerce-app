@@ -9,6 +9,7 @@ export default function App() {
   
   const [fontsLoaded] = useFonts ({
     Dancing: require('./assets/Fonts/DancingScript-Regular.ttf'),
+    AudioWide: require('./assets/Fonts/Audiowide-Regular.ttf')
   })
 
   if (!fontsLoaded) {

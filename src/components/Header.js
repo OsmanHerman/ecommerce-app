@@ -23,6 +23,7 @@ const styles = StyleSheet.create ({
         fontSize: 30,
         fontWeight: '600',
         color: colors.blue1,
+        fontFamily: "AudioWide",
     },
 }) 
 
