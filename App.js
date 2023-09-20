@@ -1,16 +1,24 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { colors } from './src/theme/colors';
-import Products from './src/screens/Products';
-import Home from './src/screens/Home';
+import { useFonts } from 'expo-font';
+import { NavigationContainer } from '@react-navigation/native';
+import RootNavigation from './src/navigation/RootNavigation';
+
 
 export default function App() {
+  
+  const [fontsLoaded] = useFonts ({
+    Dancing: require('./assets/Fonts/DancingScript-Regular.ttf'),
+  })
+
+  if (!fontsLoaded) {
+    return;
+  }
+
   return (
-    <View style={styles.container}>
-      {/*<Home/>*/}
-
-      <Products category="smartphones"/>
-
-    </View>
+    <NavigationContainer style={styles.container}>
+      <RootNavigation/>
+    </NavigationContainer>
   );
 }
 

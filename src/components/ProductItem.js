@@ -1,20 +1,21 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, useWindowDimensions, Pressable } from 'react-native'
 import React from 'react'
 import { colors } from '../theme/colors'
 
-const ProductItem = ({item}) => {
+const ProductItem = ({item, navigation}) => {
+  const {height, width} = useWindowDimensions();
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{item.title}</Text>
+    <Pressable style={styles.container} onPress={() => navigation.navigate("productDetail", { item })}>
+      <Text style={width < 300 ? styles.textMin : styles.text}>{item.title}</Text>
 
       <Image 
       style={styles.image}
       height={80}
       width={80}
       source={{uri: item.images[0]}}
-      
+      resizeMode="cover"
       />
-    </View>
+    </Pressable>
   )
 }
 
@@ -32,12 +33,18 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
 
     },
-    text: {
-        fontSize: 20,
+    textMin: {
+        fontSize: 10,
         fontWeight: '900',
         marginLeft: 20,
         width: '60%',
     },
+    text: {
+      fontSize: 20,
+      fontWeight: '900',
+      marginLeft: 20,
+      width: '60%',
+  },
     image: {
         marginRight: 10,
         objectFit: 'cover',

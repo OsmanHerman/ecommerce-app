@@ -1,14 +1,21 @@
-import { View, Text } from 'react-native'
+import { View, Text, SafeAreaView, FlatList } from 'react-native'
 import React from 'react'
 import Header from '../components/Header'
-import Categories from '../components/Categories'
+import {categories} from '../data/categories'
+import CategoryItem from '../components/CategoryItem'
 
-const Home = () => {
+const Home = ({navigation}) => {
   return (
-    <View>
-      <Header title="Categories" />
-      <Categories />
-    </View>
+    <SafeAreaView>
+      <Header title="Categories" navigation={navigation}/>
+      <View>
+        <FlatList 
+          data={categories}
+          keyExtractor={key => key}
+          renderItem={({item}) => <CategoryItem navigation={navigation} item={item}/>}
+        />
+      </View>
+    </SafeAreaView>
   )
 }
 
